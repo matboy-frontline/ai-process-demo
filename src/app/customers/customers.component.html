@@ -1,0 +1,171 @@
+<div class="container-fluid py-4">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="mb-4">Customers</h1>
+      
+      <!-- Filter Section -->
+      <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+          <h5 class="mb-0">Filters</h5>
+        </div>
+        <div class="card-body">
+          <div class="row g-3">
+            <div class="col-md-3">
+              <label for="regionFilter" class="form-label">Region</label>
+              <select 
+                id="regionFilter" 
+                class="form-select" 
+                [(ngModel)]="selectedRegion" 
+                (change)="applyFilters()">
+                <option value="">All Regions</option>
+                <option *ngFor="let region of regions" [value]="region">{{ region }}</option>
+              </select>
+            </div>
+            
+            <div class="col-md-3">
+              <label for="tierFilter" class="form-label">Tier</label>
+              <select 
+                id="tierFilter" 
+                class="form-select" 
+                [(ngModel)]="selectedTier" 
+                (change)="applyFilters()">
+                <option value="">All Tiers</option>
+                <option *ngFor="let tier of tiers" [value]="tier">{{ tier }}</option>
+              </select>
+            </div>
+            
+            <div class="col-md-3">
+              <label for="statusFilter" class="form-label">Status</label>
+              <select 
+                id="statusFilter" 
+                class="form-select" 
+                [(ngModel)]="selectedStatus" 
+                (change)="applyFilters()">
+                <option value="">All Statuses</option>
+                <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
+              </select>
+            </div>
+            
+            <div class="col-md-3 d-flex align-items-end gap-2">
+              <button 
+                class="btn btn-secondary flex-grow-1" 
+                (click)="clearFilters()">
+                Clear
+              </button>
+              <button 
+                class="btn btn-success flex-grow-1" 
+                (click)="openSaveFilterDialog()"
+                [disabled]="!hasActiveFilters()">
+                Save Filter
+              </button>
+            </div>
+          </div>
+          
+          <!-- Error message for save filter -->
+          @if (saveError()) {
+            <div class="alert alert-danger mt-3 mb-0" role="alert">
+              {{ saveError() }}
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Saved Presets Section -->
+      <div *ngIf="filterPresets.length > 0" class="card mb-4">
+        <div class="card-header bg-info text-white">
+          <h5 class="mb-0">Saved Filter Presets</h5>
+        </div>
+        <div class="card-body">
+          <div class="d-flex flex-wrap gap-2">
+            <div *ngFor="let preset of filterPresets" class="badge bg-secondary p-2 d-flex align-items-center gap-2">
+              <span 
+                class="cursor-pointer" 
+                (click)="loadPreset(preset)"
+                style="cursor: pointer;">
+                <strong>{{ preset.name }}</strong>
+                <small class="ms-2">
+                  ({{ preset.region || 'Any' }} / {{ preset.tier || 'Any' }} / {{ preset.status || 'Any' }})
+                </small>
+              </span>
+              <button 
+                class="btn btn-sm btn-danger py-0 px-1" 
+                (click)="deletePreset(preset.id)"
+                style="font-size: 0.7rem;">
+                ×
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div class="card">
+        <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
+          <h5 class="mb-0">Results</h5>
+          <span class="badge bg-light text-dark">{{ filteredCustomers.length }} customers</span>
+        </div>
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table table-hover table-striped mb-0">
+              <thead class="table-dark">
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Region</th>
+                  <th>Tier</th>
+                  <th>Status</th>
+                  <th>Join Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let customer of filteredCustomers">
+                  <td>{{ customer.id }}</td>
+                  <td><strong>{{ customer.name }}</strong></td>
+                  <td>{{ customer.email }}</td>
+                  <td>{{ customer.region }}</td>
+                  <td>
+                    <span 
+                      class="badge"
+                      [ngClass]="{
+                        'bg-warning': customer.tier === 'Basic',
+                        'bg-info': customer.tier === 'Pro',
+                        'bg-success': customer.tier === 'Enterprise'
+                      }">
+                      {{ customer.tier }}
+                    </span>
+                  </td>
+                  <td>
+                    <span 
+                      class="badge"
+                      [ngClass]="{
+                        'bg-success': customer.status === 'Active',
+                        'bg-danger': customer.status === 'Inactive',
+                        'bg-warning': customer.status === 'Pending'
+                      }">
+                      {{ customer.status }}
+                    </span>
+                  </td>
+                  <td>{{ customer.joinDate | date:'shortDate' }}</td>
+                </tr>
+                <tr *ngIf="filteredCustomers.length === 0">
+                  <td colspan="7" class="text-center text-muted py-4">
+                    No customers found matching the current filters.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Save Filter Dialog -->
+@if (showSaveDialog()) {
+  <app-save-filter-dialog
+    (save)="onSaveFilter($event)"
+    (cancel)="closeSaveFilterDialog()">
+  </app-save-filter-dialog>
+}
