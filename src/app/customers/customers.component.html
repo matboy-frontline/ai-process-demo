@@ -54,19 +54,29 @@
               </button>
               <button 
                 class="btn btn-success flex-grow-1" 
-                (click)="openSaveFilterDialog()"
+                (click)="showSavePreset = true"
                 [disabled]="!hasActiveFilters()">
-                Save Filter
+                Save Preset
               </button>
             </div>
           </div>
           
-          <!-- Error message for save filter -->
-          @if (saveError()) {
-            <div class="alert alert-danger mt-3 mb-0" role="alert">
-              {{ saveError() }}
+          <!-- Save Preset Form -->
+          <div *ngIf="showSavePreset" class="mt-3 p-3 bg-light rounded">
+            <div class="row g-2">
+              <div class="col-md-8">
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  placeholder="Enter preset name (e.g., 'Enterprise NA Active')"
+                  [(ngModel)]="presetName">
+              </div>
+              <div class="col-md-4 d-flex gap-2">
+                <button class="btn btn-primary flex-grow-1" (click)="savePreset()">Save</button>
+                <button class="btn btn-outline-secondary flex-grow-1" (click)="showSavePreset = false">Cancel</button>
+              </div>
             </div>
-          }
+          </div>
         </div>
       </div>
 
@@ -161,11 +171,3 @@
     </div>
   </div>
 </div>
-
-<!-- Save Filter Dialog -->
-@if (showSaveDialog()) {
-  <app-save-filter-dialog
-    (save)="onSaveFilter($event)"
-    (cancel)="closeSaveFilterDialog()">
-  </app-save-filter-dialog>
-}
