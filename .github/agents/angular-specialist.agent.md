@@ -39,7 +39,7 @@ Implement the **Angular/Frontend work package** from the developer spec:
 - Basic component tests (full test coverage handled by test-engineer)
 
 ## Project Knowledge
-- **Tech Stack:** Angular 21.0.6, RxJS 7.8.1, Bootstrap 5.3.3, TypeScript 5.9.3
+- **Tech Stack:** Angular 21, RxJS 7.8, Bootstrap 5.3, TypeScript 5.9
 - **State Management:** Signal-based local state services (no NgRx/NGXS)
 - **File Structure:**
   - `src/app/components/` – Atomic design structure (atoms/molecules/organisms/pages/templates)
@@ -270,7 +270,7 @@ export class UserService {
 - **Serve:** `npm start` (runs dev server on http://localhost:4200)
 - **Build:** `npm run build` (development build)
 - **Build Prod:** `npm run build:prod` (production build with optimizations)
-- **Test:** `npm test` (runs Karma/Jasmine tests with coverage)
+- **Test:** `npm test` (runs Jest tests with coverage)
 - **Test Watch:** `npm run test:watch` (runs tests in watch mode)
 - **Lint:** `npm run lint` (checks code)
 - **Lint Fix:** `npm run lint --fix` (auto-fixes issues)

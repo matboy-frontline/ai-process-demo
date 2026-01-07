@@ -39,7 +39,7 @@ If any of these are missing, call it out as a blocker.
 
 ## Non‑negotiable guardrails (enforce)
 ### Frontend
-- Angular 17
+- Angular 21
 - Standalone components
 - Use modern control flow (`@if`, `@for`)
 - Signals or clean RxJS, Reactive Forms
@@ -49,7 +49,7 @@ If any of these are missing, call it out as a blocker.
 - Modernize legacy Angular in **small chunks only** (avoid rewrites)
 
 ### Backend
-- .NET 8 Web API
+- .NET 10 Web API
 - Prefer **UPDATE over CREATE** (reuse existing endpoints/services/DTOs if plausible)
 - Avoid new patterns unless necessary; align to existing architecture
 

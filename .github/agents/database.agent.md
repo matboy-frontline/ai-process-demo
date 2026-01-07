@@ -47,7 +47,8 @@ Implement the **database work package** from the developer spec:
 ## Project Knowledge
 - **Primary Database:** SQL Server (2019+)
 - **Secondary Support:** PostgreSQL (13+)
-- **ORM:** Entity Framework Core 8
+- **ORM:** Entity Framework Core 10
+- **Testing Framework:** xUnit 2.9 (with FluentAssertions, Moq)
 - **Migration Location:** Backend project `Migrations/` folder
 - **Connection Management:** Dependency injection, connection pooling
 - **Schema Conventions:**

@@ -60,7 +60,7 @@ If something is unclear or missing:
 Unless explicitly overridden by the human:
 
 **Frontend**
-- Angular 17
+- Angular 21
 - Standalone components
 - Prefer modern control flow (`@if`, `@for`)
 - Signals or clean RxJS (no leaky subscriptions)
@@ -71,7 +71,7 @@ Unless explicitly overridden by the human:
 - Modernize legacy Angular in **small chunks** (avoid large rewrites)
 
 **Backend**
-- .NET 8 Web API
+- .NET 10 Web API
 - Prefer UPDATE/EXTEND over CREATE (reuse existing endpoints/services/DTOs if plausible)
 - Match existing architecture conventions before introducing new patterns
 

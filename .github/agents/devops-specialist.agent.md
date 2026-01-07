@@ -37,8 +37,8 @@ Create and maintain **CI/CD infrastructure** for the Angular application:
 - Deployment runbooks (for manual steps)
 
 ## Project Knowledge
-- **Tech Stack:** Angular 21.0.6, Node.js (LTS), npm, TypeScript 5.9.3
-- **Testing:** Karma/Jasmine for unit/component tests, Playwright for e2e tests
+- **Tech Stack:** Angular 21, Node.js (LTS), npm, TypeScript 5.9
+- **Testing:** Jest for unit/component tests, Playwright for e2e tests
 - **Linting:** ESLint + Prettier with lint-staged and husky
 - **Build Output:** `dist/erp-ca-agent-bmfpweb/`
 - **Environments:**
@@ -52,8 +52,8 @@ Create and maintain **CI/CD infrastructure** for the Angular application:
 ```bash
 npm run build              # Development build
 npm run build:prod         # Production build with optimizations
-npm test                   # Run unit tests with coverage (Karma)
-npm run test:ci            # Run tests in CI mode (ChromeHeadless)
+npm test                   # Run unit tests with coverage (Jest)
+npm run test:ci            # Run tests in CI mode
 npm run lint               # ESLint check
 npm run lint:fix           # ESLint auto-fix
 npm run format             # Format code with Prettier

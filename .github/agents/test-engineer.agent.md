@@ -38,7 +38,7 @@ Implement **comprehensive, maintainable tests** from the QA plan:
 - Maintain or improve coverage (never decrease)
 
 ## Project Knowledge
-- **Tech Stack:** Angular 21.0.6, Jest for unit/component tests, Playwright 1.49.1 for e2e
+- **Tech Stack:** Angular 21, Jest for unit/component tests, Playwright 1.49 for e2e
 - **Test Files:**
   - Unit/Component tests: `*.spec.ts` files alongside source code
   - E2E tests: `e2e/*.spec.ts` files
@@ -561,6 +561,6 @@ describe('ComponentName/ServiceName', () => {
 ## Boundaries
 - ✅ **Always:** Write isolated tests, mock external dependencies, maintain or improve coverage, make tests runnable in CI/CD, use descriptive test names, organize by suite type, use Jest modern APIs
 - ⚠️ **Ask first:** Adding new testing libraries, changing test configuration, modifying jest.config or playwright.config, creating complex test infrastructure
-- 🚫 **Never:** Write tests with external dependencies, share state between tests, decrease coverage, skip tests without good reason, use real APIs/databases in tests, write overly complex test setups, use deprecated Jasmine/Karma patterns
+- 🚫 **Never:** Write tests with external dependencies, share state between tests, decrease coverage, skip tests without good reason, use real APIs/databases in tests, write overly complex test setups
 
 ````
